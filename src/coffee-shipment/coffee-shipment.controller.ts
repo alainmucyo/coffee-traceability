@@ -48,7 +48,7 @@ export class CoffeeShipmentsController {
   @UseGuards(AuthGuard('jwt'))
   create(@Body() shipment: Partial<CoffeeShipment>, @Request() { user }) {
     // generate uuid for shipment id
-    shipment.id = uuidv4();
+    shipment.shipmentId = uuidv4();
     shipment.currentHolderId = user.id;
     return this.coffeeShipmentsService.create(shipment);
   }

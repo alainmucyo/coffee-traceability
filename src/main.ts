@@ -16,6 +16,7 @@ async function bootstrap() {
     .setDescription('API for tracing coffee throughout the supply chain')
     .setVersion('1.0')
     .addTag('coffee-traceability')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
