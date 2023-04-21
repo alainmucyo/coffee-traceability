@@ -40,7 +40,8 @@ export class UserService {
     });
   }
 
-  findById(id: number) {
-    return User.findOne({ where: { id } });
+  async findById(id: number) {
+    console.log('UserID====================>', id);
+    return await User.findOne({ where: { id } });
   }
 }

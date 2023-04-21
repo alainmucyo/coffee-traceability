@@ -74,18 +74,6 @@ export class UserController {
   }
 
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Get a user by ID' })
-  @ApiResponse({ status: 200, description: 'The user with the specified ID' })
-  @ApiResponse({ status: 404, description: 'User not found' })
-  @ApiParam({ name: 'id', description: 'The ID of the user to retrieve' })
-  @UseGuards(AuthGuard('jwt'))
-  @UseInterceptors(ClassSerializerInterceptor)
-  @Get(':id')
-  findOne(@Param('id') id: number): Promise<User> {
-    return this.userService.findOne(id);
-  }
-
-  @ApiBearerAuth()
   @ApiOperation({ summary: 'Update a user by ID' })
   @ApiResponse({ status: 200, description: 'The updated user' })
   @ApiResponse({ status: 404, description: 'User not found' })
@@ -109,5 +97,17 @@ export class UserController {
   @UseInterceptors(ClassSerializerInterceptor)
   checkLogin(@Request() req) {
     return req.user;
+  }
+
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Get a user by ID' })
+  @ApiResponse({ status: 200, description: 'The user with the specified ID' })
+  @ApiResponse({ status: 404, description: 'User not found' })
+  @ApiParam({ name: 'id', description: 'The ID of the user to retrieve' })
+  @UseGuards(AuthGuard('jwt'))
+  @UseInterceptors(ClassSerializerInterceptor)
+  @Get(':id')
+  findOne(@Param('id') id: number): Promise<User> {
+    return this.userService.findOne(id);
   }
 }

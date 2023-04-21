@@ -64,25 +64,6 @@ export class CoffeeShipmentsController {
     return this.coffeeShipmentsService.findAll();
   }
 
-  @ApiOperation({ summary: 'Get a coffee shipment by ID' })
-  @ApiResponse({
-    status: 200,
-    description: 'The coffee shipment has been retrieved',
-  })
-  @ApiResponse({
-    status: 404,
-    description: 'The coffee shipment with the given ID was not found',
-  })
-  @ApiParam({
-    name: 'id',
-    description: 'The ID of the coffee shipment to retrieve',
-  })
-  @ApiBearerAuth()
-  @Get(':id')
-  findOne(@Param('id') id: number): Promise<CoffeeShipment> {
-    return this.coffeeShipmentsService.findOne(id);
-  }
-
   @ApiOperation({ summary: 'Update a coffee shipment by ID' })
   @ApiResponse({
     status: 200,
@@ -184,5 +165,24 @@ export class CoffeeShipmentsController {
     @Query() options: FindManyOptions<CoffeeShipment>,
   ): Promise<CoffeeShipment[]> {
     return this.coffeeShipmentsService.search(options);
+  }
+
+  @ApiOperation({ summary: 'Get a coffee shipment by ID' })
+  @ApiResponse({
+    status: 200,
+    description: 'The coffee shipment has been retrieved',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'The coffee shipment with the given ID was not found',
+  })
+  @ApiParam({
+    name: 'id',
+    description: 'The ID of the coffee shipment to retrieve',
+  })
+  @ApiBearerAuth()
+  @Get(':id')
+  findOne(@Param('id') id: number): Promise<CoffeeShipment> {
+    return this.coffeeShipmentsService.findOne(id);
   }
 }
